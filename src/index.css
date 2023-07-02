@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.beer-img {
+  width: 180px;
+  height: 300px;
+  cursor: pointer;
+}

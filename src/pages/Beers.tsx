@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import BeerCard from "../components/BeerCard";
 import Loader from "../components/Loader";
 import { RootState } from "../redux/store";
 import { Beer } from "../types/beerTypes";
@@ -11,9 +12,11 @@ const Beers: FC = () => {
 		<div>
 			<h1>Beers page</h1>
 			{beers.length <= 0 && <Loader />}
-			{beers.map((beer) => (
-				<h1 key={beer.id}>{beer.name}</h1>
-			))}
+			<div className="d-flex justify-content-center flex-wrap">
+				{beers.map((beer: Beer) => (
+					<BeerCard beer={beer} key={beer.id} />
+				))}
+			</div>
 		</div>
 	);
 };
