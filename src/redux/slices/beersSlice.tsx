@@ -1,6 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Beer } from "../../types/beerTypes";
 
-const initialState = {
+interface BeerState {
+	beers: Beer[];
+}
+
+const initialState: BeerState = {
 	beers: [],
 };
 
@@ -8,7 +13,7 @@ export const beerSlice = createSlice({
 	name: "beers",
 	initialState,
 	reducers: {
-		setBeers: (state, action) => {
+		setBeers: (state, action: PayloadAction<Beer[]>) => {
 			state.beers = action.payload;
 		},
 	},
