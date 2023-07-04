@@ -15,5 +15,35 @@ code {
 .beer-img {
   width: 180px;
   height: 300px;
+}
+
+.paginationBttns {
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #0E6EFD;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: #0E6EFD;
+}
+
+.paginationActive a {
+  color: white;
+  background-color: #0E6EFD;
+}
+
+.paginationDisabled a {
+  cursor: no-drop;
 }
