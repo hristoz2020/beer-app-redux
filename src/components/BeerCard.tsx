@@ -1,4 +1,5 @@
 import { Beer } from "../types/beerTypes";
+import { Link } from "react-router-dom";
 
 const BeerCard = ({ beer }: { beer: Beer }) => {
 	return (
@@ -8,9 +9,9 @@ const BeerCard = ({ beer }: { beer: Beer }) => {
 				<h5 className="card-title">{beer.name}</h5>
 				<p className="mb-0">{beer.tagline}</p>
 				<div className="d-flex justify-content-between align-items-center pt-2">
-					<button type="button" className="btn btn-primary">
+					<Link to={`/beers/details/${beer.id}`} className="btn btn-primary">
 						Details
-					</button>
+					</Link>
 				</div>
 			</div>
 		</div>

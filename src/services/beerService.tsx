@@ -8,8 +8,8 @@ export const paginationBeers = async (page: number, perPage: number) => {
     return response.json();
 };
 
-export const getSingleBeer = async (id: number) => {
-    let response = await fetch(`${baseUrl}${id}`);
+export const getSingleBeer = async (id: string | undefined) => {
+    let response = await fetch(`${baseUrl}/${id}`);
 
     return response.json();
 };

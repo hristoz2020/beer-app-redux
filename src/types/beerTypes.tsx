@@ -3,6 +3,7 @@ export type Beer = {
 	name: string;
 	tagline: string;
 	first_brewed: string;
+	description: string;
 	image_url: string;
 	abv: number;
 	ibu: number;
@@ -15,7 +16,7 @@ export type Beer = {
 	volume: ValueAndUnit;
 	boil_volume: ValueAndUnit;
 	method: Method;
-	ingredients: Ingredients,
+	ingredients: Ingredients;
 	food_pairing: string[];
 	brewers_tips: string;
 	contributed_by: string;
@@ -49,7 +50,7 @@ type Hops = {
 };
 
 type Ingredients = {
-    malt: Malt[];
-    hops: Hops[];
-    yeast: string;
-}
+	malt: Malt[];
+	hops: Hops[];
+	yeast: string;
+};
