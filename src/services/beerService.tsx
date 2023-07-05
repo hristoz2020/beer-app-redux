@@ -1,21 +1,27 @@
-const baseUrl = "https://api.punkapi.com/v2/beers";
+const baseUrl: string = "https://api.punkapi.com/v2";
 
 export const paginationBeers = async (page: number, perPage: number) => {
-    let response = await fetch(
-        `https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`
-    );
+	let response = await fetch(
+		`${baseUrl}/beers?page=${page}&per_page=${perPage}`
+	);
 
-    return response.json();
+	return response.json();
 };
 
 export const getSingleBeer = async (id: string | undefined) => {
-    let response = await fetch(`${baseUrl}/${id}`);
+	let response = await fetch(`${baseUrl}/beers/${id}`);
 
-    return response.json();
+	return response.json();
 };
 
 export const getRandomBeer = async () => {
-    let response = await fetch(`${baseUrl}/random`);
+	let response = await fetch(`${baseUrl}/beers/random`);
 
-    return response.json();
+	return response.json();
+};
+
+export const getBeerByName = async (name: string) => {
+	let response = await fetch(`${baseUrl}/beers?beer_name=${name}`);
+
+	return response.json();
 };
