@@ -33,7 +33,7 @@ const Details = () => {
 							<img
 								src={currentBeer.image_url}
 								alt="beer"
-								className="img-fluid beer-img p-4"
+								className="beer-img p-4"
 							/>
 						</div>
 						<div className="col-md-8">

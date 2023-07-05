@@ -2,18 +2,24 @@ import { Beer } from "../types/beerTypes";
 import { Link } from "react-router-dom";
 
 const BeerCard = ({ beer }: { beer: Beer }) => {
+	const { image_url, id } = beer;
+	const name =
+		beer.name.length > 25
+			? beer.name.slice(0, 25).concat("...")
+			: beer.name;
+	const tagline =
+		beer.tagline.length > 30
+			? beer.tagline.slice(0, 30).concat("...")
+			: beer.tagline;
+	
 	return (
-		<div className="card card-container d-flex align-items-center m-4 border border-4 w-25">
-			<img src={beer.image_url} className="beer-img p-4" alt="beer" />
-			<div className="card-body">
-				<h5 className="card-title">{beer.name}</h5>
-				<p className="mb-0">{beer.tagline}</p>
-				<div className="d-flex justify-content-between align-items-center pt-2">
-					<Link to={`/beers/details/${beer.id}`} className="btn btn-primary">
-						Details
-					</Link>
-				</div>
-			</div>
+		<div className="card card-container d-flex justify-content-center align-items-center m-2 border border-4 w-25 h-25">
+			<img src={image_url} className="beer-img p-4" alt="beer" />
+			<h6>{name}</h6>
+			<p className="card-text">{tagline}</p>
+			<Link to={`/beers/details/${id}`} className="btn btn-primary mb-3">
+				Details
+			</Link>
 		</div>
 	);
 };
