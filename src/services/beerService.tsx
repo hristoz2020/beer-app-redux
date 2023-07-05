@@ -25,3 +25,10 @@ export const getBeerByName = async (name: string) => {
 
 	return response.json();
 };
+
+
+export const getBeers = async () => {
+	let response = await fetch(`${baseUrl}/beers`);
+
+	return response.json();
+};

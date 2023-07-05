@@ -6,11 +6,11 @@ import { RootState } from "../redux/store";
 import { Beer } from "../types/beerTypes";
 import ReactPaginate from "react-paginate";
 import { getBeerByName, paginationBeers } from "../services/beerService";
-import { setBeers } from "../redux/slices/beersSlice";
+import { setPaginationBeers } from "../redux/slices/paginationBeersSlice";
 
 const Beers = () => {
 	const dispatch = useDispatch();
-	const beers = useSelector<RootState, Beer[]>((state) => state.beers.beers);
+	const beers = useSelector<RootState, Beer[]>((state) => state.paginationBeers.paginationBeers);
 	const [pageNumber, setPageNumber] = useState<number>(1);
 	const [beersPerPage, setBeersPerPage] = useState<number>(10);
 	const [searchInput, setSearchInput] = useState<string>("");
@@ -26,13 +26,13 @@ const Beers = () => {
 			getBeerByName(searchInput).then((res) => {
 				setIsLoading(true);
 				const beersResponse: Beer[] = res;
-				dispatch(setBeers(beersResponse));
+				dispatch(setPaginationBeers(beersResponse));
 			});
 		searchInput.length === 0 &&
 			paginationBeers(pageNumber, beersPerPage).then((res) => {
 				setIsLoading(true);
 				const beersResponse: Beer[] = res;
-				dispatch(setBeers(beersResponse));
+				dispatch(setPaginationBeers(beersResponse));
 			});
 	}, [beersPerPage, pageNumber, dispatch, searchInput]);
 
