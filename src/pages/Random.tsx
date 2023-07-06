@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BeerCard from "../components/BeerCard";
-import Loader from "../components/Loader";
 import { setRandomBeer } from "../redux/slices/randomBeerSlice";
 import { RootState } from "../redux/store";
 import { getRandomBeer } from "../services/beerService";
+import BeerCard from "../components/BeerCard";
+import Loader from "../components/Loader";
 import { Beer } from "../types/beerTypes";
 
 const Random = () => {
@@ -35,9 +35,7 @@ const Random = () => {
 	const displayBeer = isLoading ? (
 		<Loader />
 	) : (
-		randomBeer.map((beer: Beer) => {
-			return <BeerCard key={beer.id} beer={beer} />;
-		})
+		 <BeerCard key={randomBeer[0].id} beer={randomBeer[0]} />
 	);
 
 	return (

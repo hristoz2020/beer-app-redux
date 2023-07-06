@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BeerCard from "../components/BeerCard";
 import { setBeers } from "../redux/slices/beersSlice";
 import { RootState } from "../redux/store";
 import { getBeers } from "../services/beerService";
+import BeerCard from "../components/BeerCard";
 import { Beer } from "../types/beerTypes";
 
 const Home = () => {

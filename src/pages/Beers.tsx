@@ -10,7 +10,9 @@ import { setPaginationBeers } from "../redux/slices/paginationBeersSlice";
 
 const Beers = () => {
 	const dispatch = useDispatch();
-	const beers = useSelector<RootState, Beer[]>((state) => state.paginationBeers.paginationBeers);
+	const beers = useSelector<RootState, Beer[]>(
+		(state) => state.paginationBeers.paginationBeers
+	);
 	const [pageNumber, setPageNumber] = useState<number>(1);
 	const [beersPerPage, setBeersPerPage] = useState<number>(10);
 	const [searchInput, setSearchInput] = useState<string>("");
@@ -72,7 +74,7 @@ const Beers = () => {
 				{!isAvailableBeers && isLoading && <h1>No beers found!</h1>}
 				{isAvailableBeers && displayBeers}
 			</div>
-			<div className="paginationBttns d-flex justify-content-center align-items-center flex-wrap mb-3">
+			<div className="d-flex justify-content-center align-items-center flex-wrap m-2">
 				{isAvailableBeers && (
 					<h4 className="mb-3 me-1 pb-1">Beers per page:</h4>
 				)}
@@ -87,6 +89,8 @@ const Beers = () => {
 						<option value="50">50</option>
 					</select>
 				)}
+			</div>
+			<div className="paginationBtns d-flex justify-content-center align-items-center flex-wrap mb-3">
 				{isAvailableBeers && (
 					<ReactPaginate
 						previousLabel={"Previous"}
@@ -94,8 +98,8 @@ const Beers = () => {
 						pageCount={pagesCount}
 						onPageChange={changePage}
 						containerClassName={"pagination justify-content-center"}
-						previousLinkClassName={"previousBttn"}
-						nextLinkClassName={"nextBttn"}
+						previousLinkClassName={"previousBtn"}
+						nextLinkClassName={"nextBtn"}
 						disabledClassName={"paginationDisabled"}
 						activeClassName={"paginationActive"}
 					/>

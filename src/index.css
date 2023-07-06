@@ -17,14 +17,14 @@ code {
   height: 300px;
 }
 
-.paginationBttns {
+.paginationBtns {
   height: 40px;
   list-style: none;
   display: flex;
   justify-content: center;
 }
 
-.paginationBttns a {
+.paginationBtns a {
   padding: 10px;
   margin: 8px;
   border-radius: 5px;
@@ -34,7 +34,7 @@ code {
   color: black;
 }
 
-.paginationBttns a:hover {
+.paginationBtns a:hover {
   color: white;
   background-color: #0E6EFD;
 }

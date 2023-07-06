@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Beer } from "../../types/beerTypes";
 
 interface favoriteBeersState {
-	favoriteBeers: Beer[];
+	data: Beer[];
 }
 
 const initialState: favoriteBeersState = {
-	favoriteBeers: [],
+	data: [],
 };
 
 export const favoriteBeersSlice = createSlice({
@@ -14,10 +14,10 @@ export const favoriteBeersSlice = createSlice({
 	initialState,
 	reducers: {
 		addFavoriteBeer: (state, action: PayloadAction<Beer[]>) => {
-			state.favoriteBeers = state.favoriteBeers.concat(action.payload);
+			state.data = state.data.concat(action.payload);
 		},
 		removeFavoriteBeer: (state, action: PayloadAction<Beer>) => {
-			state.favoriteBeers = state.favoriteBeers.filter(
+			state.data = state.data.filter(
 				(beer) => beer.id !== action.payload.id
 			);
 		},

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Beer } from "../types/beerTypes";
 import { getSingleBeer } from "../services/beerService";
 import Loader from "../components/Loader";
+import { Beer } from "../types/beerTypes";
+import NotFoundBeer from "../assets/images/beer_not_found.png";
 
 const Details = () => {
 	const [currentBeer, setCurrentBeer] = useState<Beer>();
@@ -24,6 +25,8 @@ const Details = () => {
 		return <Loader />;
 	}
 
+	const image = currentBeer.image_url !== null ? currentBeer.image_url : NotFoundBeer;
+
 	return (
 		<div className="container mt-5">
 			<div className="card">
@@ -31,7 +34,7 @@ const Details = () => {
 					<div className="row">
 						<div className="col-md-4 d-flex justify-content-center align-items-center">
 							<img
-								src={currentBeer.image_url}
+								src={image}
 								alt="beer"
 								className="beer-img p-4"
 							/>

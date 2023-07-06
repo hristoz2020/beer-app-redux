@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import BeerCard from "../components/BeerCard";
 import { RootState } from "../redux/store";
+import BeerCard from "../components/BeerCard";
 import { Beer } from "../types/beerTypes";
 
 const Favorites = () => {
 	const favoriteBeers = useSelector<RootState, Beer[]>(
-		(state) => state.favoriteBeers.favoriteBeers
+		(state) => state.favoriteBeers.data
 	);
 
 	const displayBeers =
