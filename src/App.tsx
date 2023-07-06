@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation";
 import Beers from "./pages/Beers";
 import Details from "./pages/Details";
 import Home from "./pages/Home";
+import Random from "./pages/Random";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<Route path="/beer-app" element={<Home />} />
 				<Route path="/beers" element={<Beers />} />
 				<Route path="/beers/details/:id" element={<Details />} />
+				<Route path="/random" element={<Random />} />
 			</Routes>
 		</div>
 	);
