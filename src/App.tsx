@@ -12,7 +12,7 @@ function App() {
 			<Routes>
 				<Route path="/beer-app" element={<Home />} />
 				<Route path="/beers" element={<Beers />} />
-				<Route path="/beers/details/:id" element={<Details />} />
+				<Route path="/details/:id" element={<Details />} />
 				<Route path="/random" element={<Random />} />
 			</Routes>
 		</div>
