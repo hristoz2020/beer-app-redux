@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BeerCard from "../components/BeerCard";
 import Loader from "../components/Loader";
@@ -15,18 +15,22 @@ const Random = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const isFirstRender = useRef(true);
 
-	useEffect(() => {
+	const fetchData = useCallback(() => {
 		getRandomBeer()
 			.then((beer) => {
 				dispatch(setRandomBeer(beer));
 				setIsLoading(false);
 			})
 			.catch((err) => console.log(err));
+	}, [dispatch]);
+
+	useEffect(() => {
 		if (isFirstRender.current) {
 			isFirstRender.current = false;
 			return;
 		}
-	}, [dispatch]);
+		fetchData();
+	}, [fetchData]);
 
 	const displayBeer = isLoading ? (
 		<Loader />
