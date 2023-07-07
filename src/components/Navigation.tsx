@@ -12,20 +12,24 @@ const Navigation: FC = () => {
 		setIsMenuOpen(false);
 	};
 
-	const route = [
+	const routes = [
 		{
+			id: 0,
 			path: "/beer-app",
 			title: "Home",
 		},
 		{
+			id: 1,
 			path: "/favorites",
 			title: "Favorites",
 		},
 		{
+			id: 2,
 			path: "/beers",
 			title: "Beers",
 		},
 		{
+			id: 3,
 			path: "/random",
 			title: "Random Beer",
 		},
@@ -58,8 +62,8 @@ const Navigation: FC = () => {
 					id="navbarNav"
 				>
 					<ul className="navbar-nav ms-auto">
-						{route.map((liItem) => (
-							<li className="nav-item">
+						{routes.map((liItem) => (
+							<li className="nav-item" key={liItem.id}>
 								<Link
 									className="nav-link"
 									to={liItem.path}
