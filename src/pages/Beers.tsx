@@ -1,22 +1,23 @@
 import { useState, useEffect, ChangeEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState, useAppDispatch, useAppSelector } from "../redux/store";
 import BeerCard from "../components/BeerCard";
 import Loader from "../components/Loader";
-import { RootState } from "../redux/store";
 import { Beer } from "../types/beerTypes";
 import ReactPaginate from "react-paginate";
-import { getBeerByName, paginationBeers } from "../services/beerService";
-import { setPaginationBeers } from "../redux/slices/paginationBeersSlice";
+import {
+	paginationBeers,
+	searchBeers,
+} from "../redux/slices/paginationBeersSlice";
 
 const Beers = () => {
-	const dispatch = useDispatch();
-	const beers = useSelector<RootState, Beer[]>(
-		(state) => state.paginationBeers.paginationBeers
+	const dispatch = useAppDispatch();
+	const beers = useAppSelector(
+		(state: RootState) => state.paginationBeers.paginationBeers
 	);
 	const [pageNumber, setPageNumber] = useState<number>(1);
 	const [beersPerPage, setBeersPerPage] = useState<number>(10);
 	const [searchInput, setSearchInput] = useState<string>("");
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const isLoading = useAppSelector((state: RootState) => state.paginationBeers.isLoading);
 	const isAvailableBeers = beers.length > 0;
 	const pagesCount =
 		searchInput.length > 0
@@ -24,19 +25,10 @@ const Beers = () => {
 			: Math.ceil(325 / beersPerPage);
 
 	useEffect(() => {
-		searchInput.length > 0 &&
-			getBeerByName(searchInput).then((res) => {
-				setIsLoading(true);
-				const beersResponse: Beer[] = res;
-				dispatch(setPaginationBeers(beersResponse));
-			});
 		searchInput.length === 0 &&
-			paginationBeers(pageNumber, beersPerPage).then((res) => {
-				setIsLoading(true);
-				const beersResponse: Beer[] = res;
-				dispatch(setPaginationBeers(beersResponse));
-			});
-	}, [beersPerPage, pageNumber, dispatch, searchInput]);
+			dispatch(paginationBeers({ pageNumber, beersPerPage }));
+		searchInput.length > 0 && dispatch(searchBeers(searchInput));
+	}, [beersPerPage, dispatch, pageNumber, searchInput.length, searchInput]);
 
 	const changePage = ({ selected }: { selected: number }) => {
 		setPageNumber(selected + 1); //add 1 because in react-pagination start from 0 and in request start from 1

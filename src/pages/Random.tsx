@@ -1,27 +1,20 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setRandomBeer } from "../redux/slices/randomBeerSlice";
-import { RootState } from "../redux/store";
-import { getRandomBeer } from "../services/beerService";
+import { useCallback, useEffect, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "../redux/store";
 import BeerCard from "../components/BeerCard";
 import Loader from "../components/Loader";
 import { Beer } from "../types/beerTypes";
+import { getRandomBeer } from "../redux/slices/randomBeerSlice";
 
 const Random = () => {
-	const randomBeer = useSelector<RootState, Beer[]>(
+	const dispatch = useAppDispatch();
+	const randomBeer = useAppSelector<Beer[]>(
 		(state) => state.randomBeer.randomBeer
 	);
-	const dispatch = useDispatch();
-	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const isLoading = useAppSelector((state) => state.randomBeer.isLoading);
 	const isFirstRender = useRef(true);
 
 	const fetchData = useCallback(() => {
-		getRandomBeer()
-			.then((beer) => {
-				dispatch(setRandomBeer(beer));
-				setIsLoading(false);
-			})
-			.catch((err) => console.log(err));
+		dispatch(getRandomBeer());
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -35,7 +28,7 @@ const Random = () => {
 	const displayBeer = isLoading ? (
 		<Loader />
 	) : (
-		 <BeerCard key={randomBeer[0].id} beer={randomBeer[0]} />
+		<BeerCard key={randomBeer[0].id} beer={randomBeer[0]} />
 	);
 
 	return (

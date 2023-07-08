@@ -1,20 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setBeers } from "../redux/slices/beersSlice";
-import { RootState } from "../redux/store";
-import { getBeers } from "../services/beerService";
+import { useAppDispatch, useAppSelector } from "../redux/store";
 import BeerCard from "../components/BeerCard";
 import { Beer } from "../types/beerTypes";
+import { useEffect } from "react";
+import { getBeers } from "../redux/slices/beersSlice";
 
 const Home = () => {
-	const beers = useSelector<RootState, Beer[]>((state) => state.beers.beers);
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
+	const beers = useAppSelector((state) => state.beers.beers);
 
 	useEffect(() => {
-		getBeers().then((res) => {
-			const beersResponse: Beer[] = res;
-			dispatch(setBeers(beersResponse));
-		});
+		dispatch(getBeers());
 	}, [dispatch]);
 
 	const displayBeers = beers.map((beer: Beer) => {
